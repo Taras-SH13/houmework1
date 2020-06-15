@@ -16,7 +16,14 @@
         <module>web</module>
     </modules>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.1.0</version>
+        <type>maven-plugin</type>
+        </dependency>
+
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -30,16 +37,27 @@
             <version>5.2.7.RELEASE</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
-
-
     </dependencies>
     <build>
+
         <plugins>
+
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.1.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <configLocation>config/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>check</goal></goals>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -59,4 +77,5 @@
 
         </plugins>
     </build>
+
 </project>
